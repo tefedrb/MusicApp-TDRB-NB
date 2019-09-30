@@ -89,8 +89,7 @@ public class User {
     public List<Course> addCourse(Course course){
         if(courses == null)
             courses = new ArrayList<>();
-        courses.add(course);
-
+            courses.add(course);
         return courses;
     }
 }
