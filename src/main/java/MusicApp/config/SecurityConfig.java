@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/signup/**", "/login/**").permitAll()
                 .antMatchers("/user/**", "/profile/**", "/song/**").authenticated()
-                .antMatchers("/admin/**","/role/**").hasRole("ADMIN")
+                .antMatchers("/role/**").hasRole("ADMIN")
                 .and()
                 .httpBasic();
 
@@ -49,9 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth)throws Exception{
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 //        //just creating the type of role a user could have
-        auth.inMemoryAuthentication().withUser("test").password(encoder.encode("test")).roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("normal").password(encoder.encode("normal")).roles("NORMAL");
+        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
     }
 }
