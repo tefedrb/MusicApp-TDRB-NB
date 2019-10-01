@@ -12,7 +12,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/user/list")
+    @GetMapping("/admin/user/list")
     public Iterable<User> listUsers(){
         return userService.listUsers();
     }
@@ -32,11 +32,12 @@ public class UserController {
         return userService.login(username, password);
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/admin/user/{userId}")
     public HttpStatus deleteUserById(@PathVariable Long userId){
         return userService.deleteById(userId);
     }
 
+    //addSong is creating a song. 
     @PutMapping("/user/{username}/{songId}")
     public User addSong(@PathVariable String username, @PathVariable int songId){
         return userService.addSong(username, songId);
