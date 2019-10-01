@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -38,11 +39,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/signup/**", "/login/**").permitAll()
-                .antMatchers("/user/**", "/profile/**", "/course/**").authenticated()
-                .antMatchers("/role/**").hasRole("DBA")
+                .antMatchers("/user/**", "/profile/**", "/song/**").authenticated()
+                .antMatchers("/role/**").hasRole("ADMIN_ROLE")
+                .antMatchers("/admin/**").hasRole("NORMAL_ROLE")
                 .and()
                 .httpBasic();
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth)throws Exception{
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+//        //just creating the type of role a user could have
+        auth.inMemoryAuthentication().withUser("test").password(encoder.encode("test")).roles("ADMIN_ROLE");
+        auth.inMemoryAuthentication().withUser("normal").password(encoder.encode("normal")).roles("NORMAL_ROLE");
     }
 }
