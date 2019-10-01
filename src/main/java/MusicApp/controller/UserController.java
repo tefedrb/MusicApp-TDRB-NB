@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
 public class UserController {
 
     @Autowired
@@ -20,7 +19,6 @@ public class UserController {
 
     @GetMapping("/hello")
     public String helloWorld() {
-
         return "Return Hello World 40";
     }
 
@@ -39,8 +37,8 @@ public class UserController {
         return userService.deleteById(userId);
     }
 
-    @PutMapping("/user/{username}/{courseId}")
-    public User addCourse(@PathVariable String username, @PathVariable int courseId){
-        return userService.addCourse(username, courseId);
+    @PutMapping("/user/{username}/{songId}")
+    public User addSong(@PathVariable String username, @PathVariable int songId){
+        return userService.addSong(username, songId);
     }
 }

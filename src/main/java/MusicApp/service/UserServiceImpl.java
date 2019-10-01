@@ -1,13 +1,23 @@
 package MusicApp.service;
 
-import MusicApp.models.Course;
+import MusicApp.config.JwtUtil;
+import MusicApp.models.Song;
 import MusicApp.models.User;
 import MusicApp.models.UserRole;
-import MusicApp.repositories.CourseRepository;
+import MusicApp.repositories.SongRepository;
 import MusicApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,8 +33,37 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRoleService userRoleService;
 
+    @Autowired
+    SongServices songServices;
+
+    @Autowired
+    JwtUtil jwtUtil;
+
+    @Autowired
+    @Qualifier("encoder")
+    PasswordEncoder bCryptPasswordEncoder;
+
     @Override
-    public User createUser(User newUser){
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUser(username);
+
+        if(user==null)
+            throw new UsernameNotFoundException("User null");
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), bCryptPasswordEncoder.encode(user.getPassword()),
+                true, true, true, true, getGrantedAuthorities(user));
+    }
+
+    private List<GrantedAuthority> getGrantedAuthorities(User user){
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        authorities.add(new SimpleGrantedAuthority(user.getUserRole().getName()));
+
+        return authorities;
+    }
+
+    @Override
+    public User createUser(User newUser) {
         UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
         newUser.setUserRole(userRole);
         return userRepository.save(newUser);
@@ -47,15 +86,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Autowired
-    CourseRepository courseRepository;
+    SongRepository songRepository;
 
     @Override
-    public User addCourse(String username, int courseId) {
-        Course course = courseRepository.findById(courseId).get();
+    public User addSong(String username, int songId) {
+        Song song = songRepository.findById(songId).get();
         User user = getUser(username);
-        user.addCourse(course);
+        user.addSong(song);
 
         return userRepository.save(user);
     }
-
 }

@@ -15,7 +15,6 @@ import java.util.List;
 @Entity
 @Table(name= "users")
 public class User {
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +60,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(){
+    public void setPassword(String password){
         this.password = password;
     }
 
@@ -76,20 +75,19 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "user_course",
+    @JoinTable(name = "user_song",
             joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
-    private List<Course> courses;
+            inverseJoinColumns = @JoinColumn(name = "song_id"))
+    private List<Song> songs;
 
-    public List<Course> getCourses(){ return courses; }
+    public List<Song> getSong(){ return songs; }
 
-    public void setCourses(List<Course> courses) { this.courses = courses; }
+    public void setSong(List<Song> song) { this.songs = song; }
 
-
-    public List<Course> addCourse(Course course){
-        if(courses == null)
-            courses = new ArrayList<>();
-            courses.add(course);
-        return courses;
+    public List<Song> addSong(Song song){
+        if(songs == null)
+            songs = new ArrayList<>();
+            songs.add(song);
+        return songs;
     }
 }
