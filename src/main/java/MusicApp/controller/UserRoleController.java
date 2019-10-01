@@ -16,7 +16,7 @@ public class UserRoleController {
         return roleService.getRole(rolename);
     }
 
-    @PostMapping
+    @PostMapping("/admin/")
     public UserRole createRole(@RequestBody UserRole role) {
         return roleService.createRole(role);
     }
