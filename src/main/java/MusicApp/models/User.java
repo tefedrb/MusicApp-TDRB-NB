@@ -26,6 +26,8 @@ public class User {
     @Column
     private String password;
 
+    //cascade refers to deleting, so in this example since it's Type.ALL,
+    // if we delete the user then the profile get's deleted and vice versa.
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_profile_id")
     private UserProfile userProfile;
@@ -64,6 +66,7 @@ public class User {
         this.password = password;
     }
 
+//cascade refers to deleting
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "user_role_id", nullable = false)
     private UserRole userRole;
@@ -72,6 +75,9 @@ public class User {
 
     public void setUserRole(UserRole userRole) { this.userRole = userRole;}
 
+    //FetchType.Lazy - Load it on demand so if there's a query you would load it
+    //While if you had FechType.Eager - would load all the data and you don't want it cuz if you
+    // had billons of data it would load the whole hting.
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH,
                     CascadeType.MERGE, CascadeType.REFRESH})

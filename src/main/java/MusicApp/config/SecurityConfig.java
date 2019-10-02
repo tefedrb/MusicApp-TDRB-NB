@@ -14,9 +14,9 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@Configuration // is an analog for XML files, which is used to configure our application with Security features
+@EnableWebSecurity // allows Spring to find configuration class and apply it to global WebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter { // WebSecurityConfigurerAdapter enable;es HTTP security in our app
 
     @Autowired
     UserService userService;
@@ -47,10 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth)throws Exception{
-//        //just creating the type of role a user could have
-        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
-    }
-//}
+//    @Override
+////Here we are hardcoding, so that way through postman we could use the test and
+////password ins postman under Auth(Basic Auth) and add the role ADMIN to our database.
+////Basic Auth is used when there is no data to begin with.
+//    public void configure(AuthenticationManagerBuilder auth)throws Exception{
+////just creating the type of role a user could have
+//        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
+//    }
 }
