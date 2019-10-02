@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
     public Iterable<User> listUsers();
-    public User createUser(User newUser);
+    public String createUser(User newUser);
     public String login(User user);
     public HttpStatus deleteById(Long userId);
     public User getUser(String username);

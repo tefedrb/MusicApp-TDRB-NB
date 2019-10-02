@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public User createUser(@RequestBody User newUser){
-        return userService.createUser(newUser);
+    public ResponseEntity<?> createUser(@RequestBody User newUser) {
+        return ResponseEntity.ok(new JwtResponse(userService.createUser(newUser)));
     }
 
 

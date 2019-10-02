@@ -47,10 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth)throws Exception{
-////        //just creating the type of role a user could have
-//        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
-//    }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth)throws Exception{
+//        //just creating the type of role a user could have
+        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
+    }
 //}
 }
