@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+//        antMatchers() allows configuring the HttpSecurity to only be invoked when matching the provided ant pattern.
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/signup/**", "/login/**").permitAll()
@@ -47,9 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth)throws Exception{
-//        //just creating the type of role a user could have
-        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
-    }
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth)throws Exception{
+////        //just creating the type of role a user could have
+//        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
+//    }
+//}
 }
