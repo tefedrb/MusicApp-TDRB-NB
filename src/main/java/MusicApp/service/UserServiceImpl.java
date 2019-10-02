@@ -39,6 +39,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     JwtUtil jwtUtil;
 
+    // All this is for security
+
     @Autowired
     @Qualifier("encoder")
     PasswordEncoder bCryptPasswordEncoder;
@@ -61,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
         return authorities;
     }
-
+// security ends here ^
     @Override
     public String createUser(User newUser) {
         UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
