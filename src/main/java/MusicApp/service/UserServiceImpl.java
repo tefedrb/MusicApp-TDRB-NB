@@ -63,12 +63,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User newUser) {
+    public String createUser(User newUser) {
         UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
         newUser.setUserRole(userRole);
-        return userRepository.save(newUser);
-    }
 
+        if(userRepository.save(newUser) != null){
+            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
+            return jwtUtil.generateToken(userDetails);
+        }
+        return null;
+    }
 
     @Override
     public String login(User user){
