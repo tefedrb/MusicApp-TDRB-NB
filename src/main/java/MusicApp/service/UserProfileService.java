@@ -8,5 +8,4 @@ public interface UserProfileService {
     public UserProfile getUserProfile(String username);
     public UserProfile addSong(String username, int songId);
     public UserProfile deleteSong
-
 }

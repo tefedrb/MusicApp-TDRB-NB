@@ -40,9 +40,10 @@ public class UserController {
         return userService.deleteById(userId);
     }
 
-//    //addSong is adding to a user.
+
+    //addSong is attaching a song to a user
 //    @PutMapping("/user/{username}/{songId}")
 //    public User addSong(@PathVariable String username, @PathVariable int songId){
 //        return userService.addSong(username, songId);
-    }
-
+//    }
+}

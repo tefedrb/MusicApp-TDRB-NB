@@ -27,6 +27,7 @@ public class Song {
 
     public Song() {}
 
+
 //    @ManyToMany(fetch = FetchType.LAZY,
 //            cascade = {CascadeType.DETACH,
 //                    CascadeType.MERGE, CascadeType.REFRESH})
@@ -37,6 +38,7 @@ public class Song {
 
 //    public List<User> getUsers(){ return users; }
 //
+
 //    public void setUsers(List<User> users) { this.users = users; }
 
     public int getId() {

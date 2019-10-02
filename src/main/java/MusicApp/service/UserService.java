@@ -10,7 +10,7 @@ public interface UserService extends UserDetailsService {
     public String login(User user);
     public HttpStatus deleteById(Long userId);
     public User getUser(String username);
-//    public User addSong(String username, int songId);
+    // setting this to user profile service // actually might not need to do this from userProfile - do it from user
 }
 
 

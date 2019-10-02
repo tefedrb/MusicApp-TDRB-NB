@@ -27,6 +27,7 @@ public class UserProfile {
     @OneToOne(mappedBy = "userProfile", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private User user;
 
+
     public UserProfile() {
     }
 
@@ -70,6 +71,7 @@ public class UserProfile {
         this.address = address;
     }
 
+    // Adding this in from the song model to the user profile
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
 

@@ -23,8 +23,8 @@ public class UserProfileController {
         return userProfileService.createUserProfile(username, userProfile);
     }
 
-//    ("/user/{username}/{songId}")
 
+    // This code is coming from user controller // swapped return from userService to userProfileService
     @PutMapping("/{username}/{songId}")
     public UserProfile addSong(@PathVariable String username, @PathVariable int songId) {
         return userProfileService.addSong(username, songId);
@@ -34,5 +34,4 @@ public class UserProfileController {
     public UserProfile deleteSong(@PathVariable String username, @PathVariable int songId) {
         return userProfileService.deleteById(songId);
     }
-
 }

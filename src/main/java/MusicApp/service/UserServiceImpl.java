@@ -63,14 +63,7 @@ public class UserServiceImpl implements UserService {
 
         return authorities;
     }
-// security ends here ^
-
-    /**
-     * Creates a new user and will generate a token
-     * @param newUser
-     * @return
-     */
-
+  
     @Override
     public String createUser(User newUser) {
         UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
@@ -102,6 +95,8 @@ public class UserServiceImpl implements UserService {
     public User getUser(String username){
         return userRepository.findByUsername(username);
     }
+
+    // Moving this over to user profile service impl (make sure there is a default in userservice)
 
 //    @Autowired
 //    SongRepository songRepository;
