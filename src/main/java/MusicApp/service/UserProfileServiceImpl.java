@@ -25,20 +25,19 @@ public class UserProfileServiceImpl implements UserProfileService {
     SongRepository songRepository;
 
     @Override
-    public UserProfile createUserProfile(String username, UserProfile newProfile){
+    public UserProfile createUserProfile(String username, UserProfile newProfile) {
         User user = userService.getUser(username);
         newProfile.setUser(user);
         user.setUserProfile(newProfile);
         return userProfileRepository.save(newProfile);
-//        user.setUserProfile(newProfile);
-//        return userService.createUser(user).getUserProfile();
+        //user.setUserProfile(newProfile);
+        //return userService.createUser(user).getUserProfile();
     }
 
     @Override
-    public UserProfile getUserProfile(String username){
+    public UserProfile getUserProfile(String username) {
         return userProfileRepository.findProfileByUsername(username);
     }
-
 
     // This came from UserServiceImpl
     @Override

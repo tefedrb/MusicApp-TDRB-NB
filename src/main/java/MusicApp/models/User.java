@@ -26,6 +26,8 @@ public class User {
     @Column
     private String password;
 
+    //cascade refers to deleting, so in this example since it's Type.ALL,
+    // if we delete the user then the profile get's deleted and vice versa.
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_profile_id")
     private UserProfile userProfile;
@@ -64,6 +66,7 @@ public class User {
         this.password = password;
     }
 
+//cascade refers to deleting
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "user_role_id", nullable = false)
     private UserRole userRole;
@@ -71,7 +74,6 @@ public class User {
     public UserRole getUserRole(){ return userRole; }
 
     public void setUserRole(UserRole userRole) { this.userRole = userRole;}
-
 
     //Commenting this out to transfer this functionality to the userprofile
 //    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
@@ -88,6 +90,5 @@ public class User {
 //            songs.add(song);
 //        return songs;
 //    }
-
 
 }
