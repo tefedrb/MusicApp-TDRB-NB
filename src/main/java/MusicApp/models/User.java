@@ -75,20 +75,14 @@ public class User {
 
     public void setUserRole(UserRole userRole) { this.userRole = userRole;}
 
-<<<<<<< HEAD
+
     //FetchType.Lazy - Load it on demand so if there's a query you would load it
     //While if you had FechType.Eager - would load all the data and you don't want it cuz if you
     // had billons of data it would load the whole hting.
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,
-                    CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "user_song",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = @JoinColumn(name = "song_id"))
-=======
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "user_song", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
->>>>>>> b6cd30513f39849cf5ad7b1e9b2f173e0929ef5a
+
     private List<Song> songs;
 
     public List<Song> getSong(){ return songs; }
