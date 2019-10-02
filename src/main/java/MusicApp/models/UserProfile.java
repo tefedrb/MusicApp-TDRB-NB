@@ -71,7 +71,7 @@ public class UserProfile {
     }
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "userProfile_song", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
+    @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
 
     private List<Song> songs;
 
