@@ -40,16 +40,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/signup/**", "/login/**").permitAll()
                 .antMatchers("/user/**", "/profile/**", "/song/**").authenticated()
-                .antMatchers("/role/**").hasRole("ADMIN")
+                .antMatchers("/admin/**", "/role/**").hasRole("ADMIN")
                 .and()
                 .httpBasic();
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth)throws Exception{
-////        //just creating the type of role a user could have
-//        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
-//    }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth)throws Exception{
+//        //just creating the type of role a user could have
+        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
+    }
 //}
 }

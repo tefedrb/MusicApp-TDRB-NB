@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
         return authorities;
     }
-// security ends here ^
+// security ends here
     @Override
     public String createUser(User newUser) {
         UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
@@ -99,12 +99,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     SongRepository songRepository;
 
-    @Override
-    public User addSong(String username, int songId) {
-        Song song = songRepository.findById(songId).get();
-        User user = getUser(username);
-        user.addSong(song);
-
-        return userRepository.save(user);
-    }
+    // Moving this over to user profile service impl (make sure there is a default in userservice)
+//    @Override
+//    public User addSong(String username, int songId) {
+//        Song song = songRepository.findById(songId).get();
+//        User user = getUser(username);
+//        user.addSong(song);
+//
+//        return userRepository.save(user);
+//    }
 }

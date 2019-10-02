@@ -3,6 +3,8 @@ package MusicApp.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_profile")
@@ -24,6 +26,23 @@ public class UserProfile {
     @JsonIgnore
     @OneToOne(mappedBy = "userProfile", cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private User user;
+
+    // Adding this in from the song model to the user profile
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "song_id")}, inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<Song> songs;
+    // Added getters and setters
+    public List<Song> getSongs(){ return songs;}
+
+    public void setSongs(List<Song> songs) { this.songs = songs; }
+
+    // Added this from User
+    public List<Song> addSong(Song song){
+        if(songs == null)
+            songs = new ArrayList<>();
+            songs.add(song);
+        return songs;
+    }
 
     public UserProfile(){}
 

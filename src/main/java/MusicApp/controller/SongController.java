@@ -21,4 +21,8 @@ public class SongController {
     public Iterable<Song> listSongs(){
         return songServices.listSongs();
     }
+//    @DeleteMapping("/admin/user/{songId}")
+//    public HttpStatus deleteBySongId(@PathVariable Long songId){
+//        return userService.deleteById(userId);
+//    }
 }

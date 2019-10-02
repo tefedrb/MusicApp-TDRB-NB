@@ -21,4 +21,10 @@ public class UserProfileController {
     public UserProfile createUserProfile(@PathVariable String username, @RequestBody UserProfile userProfile){
         return userProfileService.createUserProfile(username, userProfile);
     }
+
+    // This code is coming from user controller // swapped return from userService to userProfileService
+    @PutMapping("/{username}/{songId}")
+    public UserProfile addSong(@PathVariable String username, @PathVariable int songId){
+        return userProfileService.addSong(username, songId);
+    }
 }
