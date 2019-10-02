@@ -69,9 +69,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(newUser);
     }
 
+
     @Override
-    public User login(String username, String password){
-        return userRepository.login(username, password);
+    public String login(User user){
+        if(userRepository.login(user.getUsername(), user.getPassword()) != null){
+            UserDetails userDetails = loadUserByUsername(user.getUsername());
+            return jwtUtil.generateToken(userDetails);
+        }
+        return null;
     }
 
     @Override

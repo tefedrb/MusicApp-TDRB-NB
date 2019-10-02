@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
     public Iterable<User> listUsers();
     public User createUser(User newUser);
-    public User login(String username, String password);
+    public String login(User user);
     public HttpStatus deleteById(Long userId);
     public User getUser(String username);
     public User addSong(String username, int songId);
