@@ -3,6 +3,8 @@ package MusicApp.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_profile")
@@ -22,12 +24,13 @@ public class UserProfile {
     private String address;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "userProfile", cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToOne(mappedBy = "userProfile", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private User user;
 
-    public UserProfile(){}
+    public UserProfile() {
+    }
 
-    public User getUser(){
+    public User getUser() {
         return user;
     }
 
@@ -35,19 +38,19 @@ public class UserProfile {
         this.user = user;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email){
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -59,11 +62,32 @@ public class UserProfile {
         this.mobile = mobile;
     }
 
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address){
+    public void setAddress(String address) {
         this.address = address;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "userProfile_song", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
+
+    private List<Song> songs;
+
+    public List<Song> getSong() {
+        return songs;
+    }
+
+    public void setSong(List<Song> song) {
+        this.songs = song;
+    }
+
+    public List<Song> addSong(Song song) {
+        if (songs == null)
+            songs = new ArrayList<>();
+        songs.add(song);
+        return songs;
+
     }
 }
