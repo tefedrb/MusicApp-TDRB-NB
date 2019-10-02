@@ -27,17 +27,17 @@ public class Song {
 
     public Song() {}
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,
-                    CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "user_song",
-            joinColumns = {@JoinColumn(name = "song_id")},
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users;
+//    @ManyToMany(fetch = FetchType.LAZY,
+//            cascade = {CascadeType.DETACH,
+//                    CascadeType.MERGE, CascadeType.REFRESH})
+//    @JoinTable(name = "userProfile_song",
+//            joinColumns = {@JoinColumn(name = "song_id")},
+//            inverseJoinColumns = @JoinColumn(name = "userProfile_id"))
+//    private List<User> users;
 
-    public List<User> getUsers(){ return users; }
-
-    public void setUsers(List<User> users) { this.users = users; }
+//    public List<User> getUsers(){ return users; }
+//
+//    public void setUsers(List<User> users) { this.users = users; }
 
     public int getId() {
         return id;

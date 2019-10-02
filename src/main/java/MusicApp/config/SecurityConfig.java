@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // WebSecurit
     UserService userService;
 
     @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private JwtRequestFilter jwtRequestFilter; // Authenticate whether the user exists or not.
 
     @Bean("encoder")
     public PasswordEncoder encoder() {
@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // WebSecurit
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        antMatchers() allows configuring the HttpSecurity to only be invoked when matching the provided ant pattern.
+//        csrf() stands for cross site forgery, which can steal user so we encrypt it
+//authentication states that anything inside of it such as user or profile if you put / then anything afterwards needs authentication
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/signup/**", "/login/**").permitAll()
@@ -52,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // WebSecurit
 //password ins postman under Auth(Basic Auth) and add the role ADMIN to our database.
 //Basic Auth is used when there is no data to begin with.
     public void configure(AuthenticationManagerBuilder auth)throws Exception{
-//just creating the type of role a user could have
+//just creating the type of role a user could have (We should never do this cuz it allows people see it)
         auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
     }
 }

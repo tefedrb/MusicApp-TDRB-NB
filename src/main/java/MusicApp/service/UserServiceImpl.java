@@ -64,6 +64,13 @@ public class UserServiceImpl implements UserService {
         return authorities;
     }
 // security ends here ^
+
+    /**
+     * Creates a new user and will generate a token
+     * @param newUser
+     * @return
+     */
+
     @Override
     public String createUser(User newUser) {
         UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
@@ -96,15 +103,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-    @Autowired
-    SongRepository songRepository;
+//    @Autowired
+//    SongRepository songRepository;
 
-    @Override
-    public User addSong(String username, int songId) {
-        Song song = songRepository.findById(songId).get();
-        User user = getUser(username);
-        user.addSong(song);
-
-        return userRepository.save(user);
-    }
+//    @Override
+//    public User addSong(String username, int songId) {
+//        Song song = songRepository.findById(songId).get();
+//        User user = getUser(username);
+//        user.addSong(song);
+//
+//        return userRepository.save(user);
+//    }
 }
