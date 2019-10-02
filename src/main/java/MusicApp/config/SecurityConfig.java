@@ -47,12 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter { // WebSecurit
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Override
-////Here we are hardcoding, so that way through postman we could use the test and
-////password ins postman under Auth(Basic Auth) and add the role ADMIN to our database.
-////Basic Auth is used when there is no data to begin with.
-//    public void configure(AuthenticationManagerBuilder auth)throws Exception{
-////just creating the type of role a user could have
-//        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
-//    }
+    @Override
+//Here we are hardcoding, so that way through postman we could use the test and
+//password ins postman under Auth(Basic Auth) and add the role ADMIN to our database.
+//Basic Auth is used when there is no data to begin with.
+    public void configure(AuthenticationManagerBuilder auth)throws Exception{
+//just creating the type of role a user could have
+        auth.inMemoryAuthentication().withUser("test").password(encoder().encode("test")).roles("ADMIN");
+    }
 }
