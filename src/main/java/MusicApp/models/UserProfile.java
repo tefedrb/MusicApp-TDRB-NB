@@ -93,5 +93,10 @@ public class UserProfile {
 
     }
 
+    public List<Song> removeSong(Song song) {
+        if (songs != null)
+        songs.remove(song);
+        return songs;
+    }
 
 }
