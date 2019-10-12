@@ -71,6 +71,7 @@ public class UserProfile {
         this.address = address;
     }
 
+
     // Adding this in from the song model to the user profile
         @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
@@ -97,4 +98,5 @@ public class UserProfile {
         songs.remove(song);
         return songs;
     }
+
 }

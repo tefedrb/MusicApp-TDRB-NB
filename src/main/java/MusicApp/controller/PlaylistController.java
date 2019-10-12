@@ -19,4 +19,5 @@ public class PlaylistController {
     public Playlist createPlaylist(@RequestBody Playlist playlist){
         return playlist;
     }
+
 }

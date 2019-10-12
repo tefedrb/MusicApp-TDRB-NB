@@ -1,5 +1,6 @@
 package MusicApp.controller;
 
+import MusicApp.models.Song;
 import MusicApp.models.User;
 import MusicApp.models.UserProfile;
 import MusicApp.service.UserProfileService;
@@ -26,13 +27,17 @@ public class UserProfileController {
 
 
     // This code is coming from user controller // swapped return from userService to userProfileService
-    @PutMapping("/{username}/{songId}")
-    public UserProfile addSong(@PathVariable String username, @PathVariable int songId) {
-        return userProfileService.addSong(username, songId);
+
+
+    @PutMapping("/remove/{username}/{songId}")
+    public void removeSong(@PathVariable String username, @PathVariable int songId) {
+        userProfileService.removeSong(username, songId);
+
     }
 
-    @DeleteMapping("/{username}/{songId}")
-    public UserProfile removeSong(@PathVariable String username, @PathVariable int songId) {
-        return userProfileService.removeSong(username, songId);
+    //
+    @Autowired
+    public void setUserProfileService(UserProfileService userProfileService){
+        this.userProfileService =  userProfileService;
     }
 }
