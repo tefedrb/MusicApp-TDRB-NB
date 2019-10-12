@@ -71,32 +71,11 @@ public class UserProfile {
         this.address = address;
     }
 
-    // Adding this in from the song model to the user profile
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="userprofile_playlist_id")
+    private Playlist playlist;
 
-    private List<Song> songs;
+    public Playlist getPlaylist() {return playlist;}
 
-    public List<Song> getSong() {
-        return songs;
-    }
-
-    public void setSong(List<Song> song) {
-        this.songs = song;
-    }
-
-    public List<Song> addSong(Song song) {
-        if (songs == null)
-            songs = new ArrayList<>();
-        songs.add(song);
-        return songs;
-
-    }
-
-    public List<Song> removeSong(Song song) {
-        if (songs != null)
-        songs.remove(song);
-        return songs;
-    }
-
+    public void setPlaylist(Playlist playlist) {this.playlist = playlist;}
 }
