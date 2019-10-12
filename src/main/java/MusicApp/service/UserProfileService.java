@@ -7,5 +7,5 @@ public interface UserProfileService {
     public UserProfile createUserProfile(String username, UserProfile newProfile);
     public UserProfile getUserProfile(String username);
     public UserProfile addSong(String username, int songId);
-    public UserProfile deleteSong
+//    public UserProfile deleteSong(int id);
 }

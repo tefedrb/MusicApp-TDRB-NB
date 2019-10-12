@@ -72,9 +72,8 @@ public class UserProfile {
     }
 
     // Adding this in from the song model to the user profile
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+        @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
-
     private List<Song> songs;
 
     public List<Song> getSong() {
@@ -88,10 +87,8 @@ public class UserProfile {
     public List<Song> addSong(Song song) {
         if (songs == null)
             songs = new ArrayList<>();
-        songs.add(song);
+            songs.add(song);
         return songs;
 
     }
-
-
 }

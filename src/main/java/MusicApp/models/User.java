@@ -68,7 +68,7 @@ public class User {
 
 //cascade refers to deleting
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinColumn(name = "user_role_id", nullable = false)
+    @JoinColumn(name = "userRoleId", nullable = false)
     private UserRole userRole;
 
     public UserRole getUserRole(){ return userRole; }
