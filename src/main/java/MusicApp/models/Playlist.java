@@ -1,19 +1,20 @@
 package MusicApp.models;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import sun.jvm.hotspot.memory.Generation;
+
+import javax.annotation.Generated;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Playlist")
+@Table(name="playlists")
+
 public class Playlist {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long playListid;
 
     @Column
@@ -44,6 +45,16 @@ public class Playlist {
     public String getPlayListName(){return playListName;}
 
     public void setPlayListName(){this.playListName = playListName;}
+
+    private int id;
+
+    @Column
+    private String name;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(name = "user_song", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
+    private List<Song> songs;
+
 
 }
 

@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     JwtUtil jwtUtil;
 
+
+    // Adding this to test getting back list of users
+    @Autowired
+    UserService userservice;
+
     // All this is for security
 
     @Autowired
@@ -91,10 +96,16 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+//     Instead of using userRepository.findByUsername(username) I am trying userService.loadUserByUsername
     @Override
     public User getUser(String username){
         return userRepository.findByUsername(username);
     }
+
+//    @Override
+//    public User getUser(String username){
+//        return userservice.loadUserByUsername(username);
+//    }
 
     // Moving this over to user profile service impl (make sure there is a default in userservice)
 
