@@ -4,6 +4,7 @@ import MusicApp.models.User;
 import MusicApp.models.UserProfile;
 import MusicApp.service.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,8 +31,8 @@ public class UserProfileController {
         return userProfileService.addSong(username, songId);
     }
 
-//    @DeleteMapping("/{username}{songId}")
-//    public UserProfile deleteSong(@PathVariable String username, @PathVariable int songId) {
-//        return userProfileService.deleteSong(songId);
-//    }
+    @DeleteMapping("/{username}/{songId}")
+    public UserProfile removeSong(@PathVariable String username, @PathVariable int songId) {
+        return userProfileService.removeSong(username, songId);
+    }
 }

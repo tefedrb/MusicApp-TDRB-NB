@@ -91,4 +91,10 @@ public class UserProfile {
         return songs;
 
     }
+
+    public List<Song> removeSong(Song song) {
+        if (songs != null)
+        songs.remove(song);
+        return songs;
+    }
 }

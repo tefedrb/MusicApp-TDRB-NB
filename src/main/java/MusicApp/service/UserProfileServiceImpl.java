@@ -7,6 +7,7 @@ import MusicApp.repositories.SongRepository;
 import MusicApp.repositories.UserProfileRepository;
 import MusicApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -48,10 +49,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         return userProfileRepository.save(userprofile);
     }
-// working on this
-//    @Override
-//    public UserProfile deleteSong(int songId){
-//        Song song = songRepository.findById(songId).get();
-//        userProfileRepository.
-//    }
+
+    @Override
+    public UserProfile removeSong(String username, int songId){
+       Song song = songRepository.findById(songId).get();
+       UserProfile userProfile = getUserProfile(username);
+       userProfile.removeSong(song);
+
+        return null;
+    }
 }
