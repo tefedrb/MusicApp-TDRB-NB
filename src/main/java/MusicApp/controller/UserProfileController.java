@@ -30,8 +30,8 @@ public class UserProfileController {
         return userProfileService.addSong(username, songId);
     }
 
-    @DeleteMapping("/{username}{songId}")
-    public UserProfile deleteSong(@PathVariable String username, @PathVariable int songId) {
-        return userProfileService.deleteById(songId);
-    }
+//    @DeleteMapping("/{username}{songId}")
+//    public UserProfile deleteSong(@PathVariable String username, @PathVariable int songId) {
+//        return userProfileService.deleteSong(songId);
+//    }
 }

@@ -25,8 +25,13 @@ public class Song {
     @Column
     private String title;
 
+    @Column
+    private String artist;
+
     public Song() {}
 
+//    @OneToMany (mappedBy = "song", cascade = CascadeType.PERSIST)
+//    private UserProfile userProfile;
 
 //    @ManyToMany(fetch = FetchType.LAZY,
 //            cascade = {CascadeType.DETACH,
@@ -40,6 +45,14 @@ public class Song {
 //
 
 //    public void setUsers(List<User> users) { this.users = users; }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
 
     public int getId() {
         return id;

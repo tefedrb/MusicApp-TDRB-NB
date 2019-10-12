@@ -48,4 +48,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 
         return userProfileRepository.save(userprofile);
     }
+// working on this
+//    @Override
+//    public UserProfile deleteSong(int songId){
+//        Song song = songRepository.findById(songId).get();
+//        userProfileRepository.
+//    }
 }
