@@ -40,21 +40,21 @@ public class UserProfileServiceImpl implements UserProfileService {
         return userProfileRepository.findProfileByUsername(username);
     }
 
+
     // This came from UserServiceImpl
-//    @Override
-//    public UserProfile addSong(String username, int songId) {
-//        Song song = songRepository.findById(songId).get();
-//        UserProfile userprofile = getUserProfile(username);
-//        userprofile.addSong(song);
-//
-//        return userProfileRepository.save(userprofile);
-//    }
+    @Override
+    public UserProfile addSong(String username, Long songId) {
+        Song song = songRepository.findById(songId).get();
+        UserProfile userprofile = getUserProfile(username);
+        userprofile.addSong(song);
+        return userProfileRepository.save(userprofile);
+    }
 
     @Override
-    public void removeSong(String username, int songId){
-       Song song = songRepository.findById(songId).get();
-       UserProfile userProfile = getUserProfile(username);
-
-       // userProfileRepository.deleteSongById(song.getId());
+    public void removeSong(String username, Long songId){
+        Song song = songRepository.findById(songId).get();
+        UserProfile userProfile = getUserProfile(username);
+        userProfile.removeSong(song);
     }
+
 }

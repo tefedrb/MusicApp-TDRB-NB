@@ -9,7 +9,7 @@ public class UserProfileServiceStub implements UserProfileService {
     public UserProfile createUserProfile(String username, UserProfile newProfile) {
         UserProfile userProfile = new UserProfile();
 
-        userProfile.setEmail("KdotLamar@ADHD.com");
+        userProfile.setEmail("batman@superhero.com");
 
         if(newProfile == null){
             return null;
@@ -18,10 +18,14 @@ public class UserProfileServiceStub implements UserProfileService {
         return userProfile;
     }
 
-
-
     @Override
     public UserProfile getUserProfile(String username) {return null;}
 
+    @Override
+    public UserProfile addSong(String username, Long songId) {
+        return null;
     }
+
+    @Override
+    public void removeSong(String username,  Long songid){};
 }

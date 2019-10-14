@@ -8,6 +8,6 @@ import org.springframework.http.HttpStatus;
 public interface UserProfileService {
     public UserProfile createUserProfile(String username, UserProfile newProfile);
     public UserProfile getUserProfile(String username);
-//    public UserProfile addSong(String username, int songId);
-//    public void removeSong(String username, int songId);
+    public UserProfile addSong(String username, Long songId);
+    public void removeSong(String username, Long songId);
 }
