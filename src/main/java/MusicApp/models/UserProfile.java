@@ -1,6 +1,7 @@
 package MusicApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -71,10 +72,9 @@ public class UserProfile {
         this.address = address;
     }
 
-
     // Adding this in from the song model to the user profile
-        @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
-    @JoinTable(name = "playlist", joinColumns = {@JoinColumn(name = "userProfile_id")}, inverseJoinColumns = @JoinColumn(name = "song_id"))
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "songs")
     private List<Song> songs;
 
     public List<Song> getSong() {

@@ -39,6 +39,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     JwtUtil jwtUtil;
 
+    @Autowired
+    UserProfileService userProfileService;
+
 
     // Adding this to test getting back list of users
     @Autowired

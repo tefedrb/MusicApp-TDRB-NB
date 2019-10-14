@@ -30,7 +30,7 @@ public class UserProfileController {
 
 
     @PutMapping("/remove/{username}/{songId}")
-    public void removeSong(@PathVariable String username, @PathVariable int songId) {
+    public void removeSong(@PathVariable String username, @PathVariable Long songId) {
         userProfileService.removeSong(username, songId);
 
     }
